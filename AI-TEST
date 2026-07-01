@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>紫微斗數查詢</title>
+
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  padding:40px;
+  background:#f7f3ff;
+}
+
+h1{
+  color:#6a5cff;
+}
+
+input{
+  width:80%;
+  padding:15px;
+  border-radius:15px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:20px;
+  background:#6a5cff;
+  color:white;
+  font-size:16px;
+}
+
+.box{
+  margin-top:30px;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  min-height:80px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🔮 紫微斗數智能查詢</h1>
+
+<p>輸入星曜或命盤關鍵字</p>
+
+<input id="input" placeholder="例如：天機 / 命宮 / 太陽">
+
+<br>
+
+<button onclick="search()">查詢</button>
+
+<div class="box" id="result">等待輸入...</div>
+
+
+<script>
+
+// 🧠 紫微斗數資料庫（核心）
+const db = [
+{
+key:"天機",
+answer:"天機星：智慧、思考、變動星，適合策劃與分析型人才。"
+},
+{
+key:"太陽",
+answer:"太陽星：代表光明、外向、領導力強，但容易操心。"
+},
+{
+key:"太陰",
+answer:"太陰星：溫柔細膩、情感豐富，適合穩定環境。"
+},
+{
+key:"七殺",
+answer:"七殺星：行動力強、有衝勁，但情緒波動較大。"
+},
+{
+key:"命宮",
+answer:"命宮：代表一個人的基本性格與人生主軸，是紫微斗數核心。"
+}
+];
+
+function search(){
+
+let text = document.getElementById("input").value;
+
+if(!text){
+document.getElementById("result").innerHTML = "請輸入內容 😊";
+return;
+}
+
+let found = db.find(item => text.includes(item.key));
+
+if(found){
+document.getElementById("result").innerHTML =
+"🔮 解答：<br><br>" + found.answer;
+}else{
+document.getElementById("result").innerHTML =
+"找不到資料，可以試：天機 / 太陽 / 命宮 / 七殺";
+}
+
+}
+
+</script>
+
+</body>
+</html>
